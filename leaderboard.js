@@ -26,6 +26,9 @@ if (Meteor.is_client) {
   Template.player.events({
     'click': function () {
       Session.set("selected_player", this._id);
+    },
+    'hover': function () {
+      console.log('KOKO');
     }
   });
 }
