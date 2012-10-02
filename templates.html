@@ -1,0 +1,68 @@
+<template name="leaderboard">
+	<div id="messages-container">
+		{{#each messages}}		
+			{{> message}}
+		{{/each}}	
+	</div>
+
+	<div class="row-fluid">
+		<div class="span1"><button class="btn disabled">{{username}}</button></div>
+		<div class="span8 input-box">
+			<input type="text" style="width: 100%;" id="input-text">
+		</div>
+		<div class="span3">
+			<button class="btn btn-success" style="width: 100%;"
+				id="send-message-button">Send</button>
+		</div>
+	</div>
+
+	<!--<div class="leaderboard">-->
+		<!--{{#each players}}-->
+			<!--{{> player}}-->
+		<!--{{/each}}-->
+	<!--</div>-->
+
+	<!--{{#if selected_name}}-->
+	<!--<div class="details">-->
+		<!--<div class="name">{{selected_name}}</div>-->
+		<!--<input type="button" class="inc" value="Give 5 points" />-->
+	<!--</div>-->
+	<!--{{/if}}-->
+
+	<!--{{#unless selected_name}}-->
+	<!--<div class="none">Click a player to select</div>-->
+	<!--{{/unless}}-->
+</template>
+
+<template name="player">
+	<div class="player {{selected}}">
+		<span class="name">{{name}}</span>
+		<span class="score">{{score}}</span>
+	</div>
+</template>
+
+<template name="message">
+<div class="single-message"><span class="label label-warning" style="background-color: #009cde;">{{author}}</span> {{content}} <span class="message-time pull-right"> {{timeFormatted}}</span></div>
+</template>
+
+<template name="authNavbox">
+<ul class="nav">
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			You're recognized as <span style="color:white;font-weight:bold;">{{username}}</span> <b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+				<div style="padding: 10px;">
+				Wanna change nick?
+				<input name="nickname" id="input-nick">
+				</div>
+		</ul>
+	</li>
+</ul>
+</template>
+
+<template name="loginBox">
+	<input id="login-name" class="input">
+	<input id="login-color" class="input">
+	<button class="login-button" class="btn btn-primary">log in</button>
+</template>
