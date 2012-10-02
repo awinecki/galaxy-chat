@@ -20,7 +20,7 @@ if (Meteor.is_client) {
         console.log(name, color);
         $('#overlay-wrapper').hide();
         Session.set("username", name);
-        Session.set("color", name);
+        Session.set("color", color);
         Session.set("auth", true);
       }
     }
@@ -32,6 +32,10 @@ if (Meteor.is_client) {
 
   Template.message.timeFormatted = function () {
     return moment(this.time).fromNow();
+  };
+
+  Template.message.color = function () {
+    return this.color || "009cde";
   };
 
   Template.leaderboard.username = function () {
@@ -77,6 +81,7 @@ if (Meteor.is_client) {
       var content = $('#input-text').val();
       Messages.insert({
         author:  Session.get("username"),
+        color:   Session.get("color"),
         content: content,
         time:    new Date().getTime()
       });
