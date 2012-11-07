@@ -1,0 +1,86 @@
+<template name="leaderboard">
+	<!-- Messages container -->
+	<div id="messages-container">
+		{{#each messages}}		
+			{{> message}}
+		{{/each}}	
+	</div>
+
+	<!-- Notifications who's typing -->
+	<div id="typing-notificators-container">
+		{{#each users}}
+			{{> typingBox}}
+		{{/each}}
+	</div>
+
+	<!-- Send message form -->
+	<div class="row-fluid">
+		<form id="send-msg-form">
+			<div class="span1"><button class="btn disabled">{{username}}</button></div>
+			<div class="span8 input-box">
+				<input type="text" style="width: 100%;" id="input-text">
+			</div>
+			<div class="span3">
+				<button class="btn btn-success" style="width: 100%;"
+					id="send-message-button">Send</button>
+			</div>
+		</form>
+	</div>
+</template>
+
+<template name="typingBox">
+<div id="notify-{{_id}}" class="single-message {{# if notTyping}}hidden{{/if}}">
+	<span class="label label-warning" style="background-color: #{{color}};">{{name}}</span> {{liveMsg}} <span class="typing">typing...</span>
+</div>
+</template>
+
+<template name="message">
+	{{# if notification}}
+		<div class="single-message">
+			{{contentParse}} <span class="message-time pull-right"> {{timeFormatted}}</span>
+		</div>
+	{{else}}
+		<div class="single-message">
+			<span class="label label-warning" style="background-color: #{{color}};">{{author}}</span> {{contentParse}} <span class="message-time pull-right"> {{timeFormatted}}</span>
+		</div>
+	{{/if}}
+</template>
+
+<template name="authNavbox">
+<ul class="nav">
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			You're recognized as <span style="color:white;font-weight:bold;">{{username}}</span> <b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+				<div style="padding: 10px;">
+				Wanna change nick?
+				<input name="nickname" id="input-nick">
+				</div>
+		</ul>
+	</li>
+</ul>
+</template>
+
+<template name="loginBox">
+	<form id="login-form" class="form-inline">
+	  <input type="text" id="login-name" class="input-small" placeholder="nick">
+	  <input type="text" id="login-color" class="color input-small" placeholder="hex color">
+	  <button type="submit" class="btn btn-info login-button">Sign in</button>
+	</form>
+</template>
+
+<template name="usersbox">
+	<div class="usersbox">
+		<h3>Users in Chat:</h1>
+		{{#each users}}
+			{{> user}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="user">
+	<div class="user">
+		<span>{{name}}</span> <span class="{{#if notTyping}}hidden{{/if}}">typing...</span>
+	</div>
+</template>

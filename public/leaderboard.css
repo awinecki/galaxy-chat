@@ -10,6 +10,15 @@ body {
     user-select: none;
 }
 
+.usersbox {
+  border-radius: 5px;
+  background-color: #fff;
+  margin: 0px 30px 0px 5px;
+  padding: 10px;
+  width: 100%
+  min-height: 300px;
+}
+
 .single-message {
   margin-bottom: 5px;
   padding: 3px 10px 4px 3px;
@@ -17,13 +26,23 @@ body {
   border-radius: 3px; 
 }
 
+.typing-notification {
+  margin-bottom: 5px;
+  padding: 3px 10px 4px 3px;
+}
+
+.typing {
+	color: #ababab;
+	font-size: x-small;
+}
+
 .message-time {
   color: #aaa;
 }
 
 .login-box {
-  margin: 100px auto 0px auto;
-  width: 400px;
+  margin: 10% auto 0px auto;
+  width: 300px;
 }
 
 #outer {
@@ -32,14 +51,14 @@ body {
 }
 
 #main-container {
-  padding: 50px 0px 0px 0px;
+  padding: 50px 0px 200px 0px;
 }
 
 #overlay-wrapper {
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0,0,0,1);
   z-index: 999;
 }
 
