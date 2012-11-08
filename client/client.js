@@ -41,12 +41,10 @@ if (Meteor.is_client) {
         $('#top-nav-stripe').fadeIn();
         Session.set("user", user);
         Session.set("auth", true);
-        //var userFromDB = Users.findOne({name: user.name});
         $('#overlay-wrapper').fadeOut();
         $('#top-nav-stripe').fadeIn();
 				//document.getElementById('send-msg-form').scrollIntoView(true); //ugly
 				$('#input-text').focus();
-				console.log('new user.');
 				Meteor.call('createUser', {
 					name:   user.name,
 					color:  user.color,
@@ -89,7 +87,7 @@ if (Meteor.is_client) {
 		return unescape(this.content);
 	};
   Template.message.timeFormatted = function() {
-    return moment(this.time).fromNow();
+    return moment(this.time).format("LLLL") + " (" + moment(this.time).fromNow() + ")";
   };
   Template.message.color = function() {
     return this.color || "009cde";
@@ -124,18 +122,8 @@ if (Meteor.is_client) {
   });
 
   Template.leaderboard.events({
-    //'keyup #input-text': function() {
-      //var user = Session.get("user"),
-          //text = $('#input-text').val();
-      //if (text) {
-        //Users.update({name: user.name}, {$set: {
-					//typing: true,
-					//liveMsg: text
-				//}});
-      //} else {
-        //Users.update({name: user.name}, {$set: {typing: false}});
-      //}
-    //},
+		// ugly hack with setTimeout. Maybe this can be done some other way?
+		// TODO: check if this can be done more neat.
 		'keydown #input-text': function() {
 			setTimeout(function() {
 				var user = Session.get("user"),
