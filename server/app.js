@@ -36,7 +36,7 @@ if (Meteor.is_server) {
   });
 
   Meteor.publish("messages", function() {
-    return Messages.find({});
+    return Messages.find({time: {$gt: new Date().getTime()}});
   });
 
   Meteor.startup(function() {

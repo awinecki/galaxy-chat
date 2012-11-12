@@ -26,7 +26,6 @@ if (Meteor.is_client) {
 
   // client: autosubscribe to the count for the current room
   //Meteor.autosubscribe(function () {
-  Meteor.subscribe("messages");
   //});
 
   Template.loginBox.events({
@@ -54,6 +53,7 @@ if (Meteor.is_client) {
 					if (err) console.log(err);
 					Session.set('_id', data);
 					Meteor.subscribe("users", data);
+					Meteor.subscribe("messages");
 				})
       }
 
@@ -87,15 +87,12 @@ if (Meteor.is_client) {
 		return unescape(this.content);
 	};
   Template.message.timeFormatted = function() {
-    return moment(this.time).format("LLLL") + " (" + moment(this.time).fromNow() + ")";
+    return moment(this.time).fromNow();
   };
   Template.message.color = function() {
     return this.color || "009cde";
   };
   Template.message.events({
-    'click .single-message': function() {
-			console.log('click!');
-    }
   });
 
   Template.leaderboard.username = function() {
