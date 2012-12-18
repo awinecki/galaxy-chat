@@ -81,6 +81,6 @@
 
 <template name="user">
 	<div class="user">
-		<span>{{name}}</span> <span class="{{#if notTyping}}hidden{{/if}}">typing...</span>
+		<span class="label label-warning" style="background-color: #{{color}};">{{name}}</span> <span class="{{#if notTyping}}hidden{{/if}}">typing...</span>
 	</div>
 </template>
