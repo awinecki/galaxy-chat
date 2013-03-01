@@ -1,4 +1,7 @@
-<template name="leaderboard">
+
+<!-- leaderboard template -->
+<template name="chat">
+
 	<!-- Messages container -->
 	<div id="messages-container">
 		{{#each messages}}		
@@ -31,12 +34,14 @@
 	</div>
 </template>
 
+<!-- typingBox template -->
 <template name="typingBox">
 <div id="notify-{{_id}}" class="single-message {{# if notTyping}}hidden{{/if}}">
 	<span class="label label-warning" style="background-color: #{{color}};">{{name}}</span> {{liveMsg}} <span class="typing">typing...</span>
 </div>
 </template>
 
+<!-- mesasge template -->
 <template name="message">
 	{{# if notification}}
 		<div class="single-message">
@@ -49,6 +54,7 @@
 	{{/if}}
 </template>
 
+<!-- authNavBox template -->
 <template name="authNavbox">
 <ul class="nav">
 	<li class="dropdown">
@@ -65,6 +71,7 @@
 </ul>
 </template>
 
+<!-- loginBox template -->
 <template name="loginBox">
 	<form id="login-form" class="form-inline">
 	  <input type="text" id="login-name" class="input-small" placeholder="nick">
@@ -73,6 +80,7 @@
 	</form>
 </template>
 
+<!-- usersbox template -->
 <template name="usersbox">
 	<div class="usersbox">
 		<h3>Users in Chat:</h1>
@@ -82,6 +90,7 @@
 	</div>
 </template>
 
+<!-- user template -->
 <template name="user">
 	<div class="user">
 		<span class="label label-warning" style="background-color: #{{color}};">{{name}}</span> <span class="{{#if notTyping}}hidden{{/if}}">typing...</span>

@@ -78,14 +78,14 @@ if (Meteor.is_client) {
     }
   });
 
-  // leaderboard template
-  Template.leaderboard.messages = function() {
+  // chat template
+  Template.chat.messages = function() {
     return Messages.find({}, {sort: {time: 1}});
   };
-  Template.leaderboard.users = function() { 
+  Template.chat.users = function() { 
     return Users.find({}, {sort: {name: -1}}); 
   };
-  Template.leaderboard.username = function() {
+  Template.chat.username = function() {
     if (Session.get("auth")) {
       var user = Session.get("user");
       return user.name;
@@ -132,6 +132,10 @@ if (Meteor.is_client) {
     }
   });
 
+  // messageSendForm template
+  Template.messageSendForm.username = function() {
+    return Session.get('username');
+  }
   Template.messageSendForm.events({
 		// ugly hack with setTimeout. Maybe this can be done some other way?
 		// TODO: check if this can be done more neat.
