@@ -1,34 +1,52 @@
 
+// Initialize collections
 Users    = new Meteor.Collection("users");
 Messages = new Meteor.Collection("messages");
 
-// Utilities
-// TODO: kick this out to a different file, make some structure
-// for God's sake!
-// =============
-Handlebars.registerHelper('contentParse', function() {
-  return new Handlebars.SafeString(this.content);
-});
-
-function parseLinks(string) {
-    return string
-			.replace(/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/gi, "<img src='$1' />");
-			//.replace(/(((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?))/gi, "<a href='$1'>$1</a>");
-};
-// ============= end of spaghetti code (just kidding ;p)
-
+// Stuff to do if client
 if (Meteor.is_client) {
+
+  // On client startup
   Meteor.startup(function() {
-    //Session.set("username", "Andrzej");
+
+    Session.set("username", "Andrzej");
     //console.log(Users.find({}));
-    Session.set("auth", false);
+    // Session.set("auth", false);
+    Session.set("auth", true);
+
+    // Dev
+    var user = {
+      name: "awinecki",
+      color: "red"
+    }
+    if (user.name != '') {
+      $('#overlay-wrapper').fadeOut();
+      $('#top-nav-stripe').fadeIn();
+      Session.set("user", user);
+      Session.set("auth", true);
+      $('#overlay-wrapper').fadeOut();
+      $('#top-nav-stripe').fadeIn();
+      //document.getElementById('send-msg-form').scrollIntoView(true); //ugly
+      $('#input-text').focus();
+      Meteor.call('createUser', {
+        name:   user.name,
+        color:  user.color,
+        online: true,
+        typing: false
+      }, function(err, data) {
+        if (err) console.log(err);
+        Session.set('_id', data);
+        Meteor.subscribe("users", data);
+        Meteor.subscribe("messages");
+      })
+    }
   });
 
-  // client: autosubscribe to the count for the current room
-  //Meteor.autosubscribe(function () {
-  //});
-
+  // loginBox template 
   Template.loginBox.events({
+
+    // Submit/ log in handler TODO: this is too long, 
+    // kick out some of this code
 		'submit #login-form': function (e) {
       e.preventDefault();
       var user = {
@@ -60,27 +78,32 @@ if (Meteor.is_client) {
     }
   });
 
-  // usersbox template ****
-  // **********************
+  // leaderboard template
   Template.leaderboard.messages = function() {
     return Messages.find({}, {sort: {time: 1}});
   };
-  Template.leaderboard.users = function() { return Users.find({}, {sort: {name: -1}}); };
+  Template.leaderboard.users = function() { 
+    return Users.find({}, {sort: {name: -1}}); 
+  };
+  Template.leaderboard.username = function() {
+    if (Session.get("auth")) {
+      var user = Session.get("user");
+      return user.name;
+    } else {
+      return "nobody";
+    }
+  };
 
-  // usersbox template ****
-  // **********************
+  // usersbox template
   Template.usersbox.users = function() { return Users.find({}, {}); };
 
-  // user template ********
-  // **********************
+  // user template
   Template.user.notTyping = function() { return !this.typing; };
 
-  // typingBox template ***
-  // **********************
+  // typingBox template
   Template.typingBox.notTyping = function() { return !this.typing; };
 
-  // Message template *****
-  // **********************
+  // Message template
 	Template.message.content = function() {
 		console.log(this.content);
 		console.log(unescape(this.content));
@@ -95,15 +118,7 @@ if (Meteor.is_client) {
   Template.message.events({
   });
 
-  Template.leaderboard.username = function() {
-    if (Session.get("auth")) {
-      var user = Session.get("user");
-      return user.name;
-    } else {
-      return "nobody";
-    }
-  };
-
+  // authNavbox template
   Template.authNavbox.username = function() {
     if (Session.get("auth")) {
       return Session.get("username");
@@ -111,16 +126,16 @@ if (Meteor.is_client) {
       return "nobody";
     }
   };
-
   Template.authNavbox.events({
     'click #input-nick': function(e) {
       e.preventDefault();
     }
   });
 
-  Template.leaderboard.events({
+  Template.messageSendForm.events({
 		// ugly hack with setTimeout. Maybe this can be done some other way?
 		// TODO: check if this can be done more neat.
+    // on keydown action, live refresh
 		'keydown #input-text': function() {
 			setTimeout(function() {
 				var user = Session.get("user"),
@@ -135,6 +150,8 @@ if (Meteor.is_client) {
 				}
 			}, 1);
 		},
+
+    // send message handler
     'submit #send-msg-form': function(e) {
       e.preventDefault();
       var user = Session.get("user");
@@ -149,6 +166,7 @@ if (Meteor.is_client) {
       });
       $('#input-text').val('');
     }
+    
   });
 }
 

@@ -1,13 +1,17 @@
 <head>
-  <title>wave v0.2</title>
+  <title>Galaxy Chat v0.3.0</title>
 </head>
 
 <body>
+
+	<!-- login box -->
 	<div class="row-fluid" id="overlay-wrapper">
 		<div class="login-box">
 			{{> loginBox}}
 		</div>
 	</div>
+
+	<!-- top navigation -->
 	<div class="navbar navbar-inverse navbar-fixed-top" id="top-nav-stripe" style="display:none;">
 		<div class="navbar-inner">
 			<div class="container">
@@ -16,11 +20,11 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="#">wave v0.2</a>
+				<a class="brand" href="#">Galaxy Chat v0.3.0</a>
 				<div class="nav-collapse collapse">
 						<ul class="nav">
 								<li class="active"><a href="#">Home</a></li>
-								<li class="dropdown">
+<!-- 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 										Dropp <b class="caret"></b>
 									</a>
@@ -34,7 +38,7 @@
 										<li><a href="#">One more separated link</a></li>
 									</ul>
 								</li>
-						</ul>
+ -->						</ul>
 						<form class="navbar-form pull-right">
 								<!--<input class="span2" type="text" placeholder="Email">-->
 								<!--<input class="span2" type="password" placeholder="Password">-->
@@ -45,13 +49,25 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- main messages container -->
 	<div class="row-fluid" id="main-container">
 		<div class="span1"></div>
 		<div class="span9">
 			{{> leaderboard}}
 		</div>
-		<div class="span2">
+	</div>
+
+	<!-- online users side panel -->
+	<div class="row-fluid" id="online-users-container">
+		<div class="span3 offset9">
 			{{> usersbox}}
 		</div>
 	</div>
+
+	<!-- bottom send msg form -->
+	<div class="row-fluid" id="bottom-sendmsgform-container">
+			{{> messageSendForm}}
+	</div>
+
 </body>

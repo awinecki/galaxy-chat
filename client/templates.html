@@ -13,7 +13,10 @@
 		{{/each}}
 	</div>
 
+</template>
+
 	<!-- Send message form -->
+<template name="messageSendForm">
 	<div class="row-fluid">
 		<form id="send-msg-form">
 			<div class="span1"><button class="btn disabled">{{username}}</button></div>
@@ -21,7 +24,7 @@
 				<input type="text" style="width: 100%;" id="input-text">
 			</div>
 			<div class="span3">
-				<button class="btn btn-success" style="width: 100%;"
+				<button class="btn btn-success"
 					id="send-message-button">Send</button>
 			</div>
 		</form>
