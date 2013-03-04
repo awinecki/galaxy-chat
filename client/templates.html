@@ -44,12 +44,12 @@
 <!-- mesasge template -->
 <template name="message">
 	{{# if notification}}
-		<div class="single-message">
-			{{contentParse}} <span class="message-time pull-right"> {{timeFormatted}}</span>
+		<div class="single-message" data-time="{{time}}">
+			{{contentParse}}<span class="message-time pull-right"> {{timeFormatted}}</span>
 		</div>
 	{{else}}
-		<div class="single-message">
-			<span class="label label-warning" style="background-color: #{{color}};">{{author}}</span> {{contentParse}} <span class="message-time pull-right"> {{timeFormatted}}</span>
+		<div class="single-message" data-time="{{time}}">
+			<span class="label label-warning" style="background-color: #{{color}};">{{author}}</span> {{contentParse}}<span class="message-time pull-right"> {{timeFormatted}}</span>
 		</div>
 	{{/if}}
 </template>

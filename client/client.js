@@ -14,6 +14,8 @@ if (Meteor.is_client) {
     // Session.set("auth", false);
     Session.set("auth", true);
 
+    refreshTimes(5000);
+
     // Dev
     var user = {
       name: "awinecki",
@@ -112,6 +114,9 @@ if (Meteor.is_client) {
   Template.message.timeFormatted = function() {
     return moment(this.time).fromNow();
   };
+  Template.message.timeM = function() {
+    return moment(this.time);
+  }
   Template.message.color = function() {
     return this.color || "009cde";
   };
