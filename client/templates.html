@@ -18,41 +18,39 @@
 
 </template>
 
-	<!-- Send message form -->
-<template name="messageSendForm">
-	<div class="row-fluid">
-		<form id="send-msg-form">
-			<div class="span1"><button class="btn disabled">{{username}}</button></div>
-			<div class="span8 input-box">
-				<input type="text" style="width: 100%;" id="input-text">
-			</div>
-			<div class="span3">
-				<button class="btn btn-success"
-					id="send-message-button">Send</button>
-			</div>
-		</form>
-	</div>
+<!-- mesasge template -->
+<template name="message">
+	{{# if notification}}
+		<div class="message" data-time="{{time}}">
+			<span class="message-content">{{contentParse}}</span>
+			<span class="message-time pull-right"> {{timeFormatted}}</span>
+		</div>
+	{{else}}
+		<div class="message" data-time="{{time}}">
+			<span class="nick-tile" style="background-color: {{color}};">{{author}}:</span>
+			<span class="message-content">{{contentParse}}</span>
+			<span class="message-time pull-right"> {{timeFormatted}}</span>
+		</div>
+	{{/if}}
 </template>
 
 <!-- typingBox template -->
 <template name="typingBox">
-<div id="notify-{{_id}}" class="single-message {{# if notTyping}}hidden{{/if}}">
-	<span class="label label-warning" style="background-color: #{{color}};">{{name}}</span> {{liveMsg}} <span class="typing">typing...</span>
+<div id="notify-{{_id}}" class="message {{# if notTyping}}hidden{{/if}}">
+	<span class="nick-tile" style="background-color: {{color}};">{{name}}:</span>
+	<span class="message-content">{{liveMsg}}</span>
+	<span class="typing">typing...</span>
 </div>
 </template>
 
-<!-- mesasge template -->
-<template name="message">
-	{{# if notification}}
-		<div class="single-message" data-time="{{time}}">
-			{{contentParse}}<span class="message-time pull-right"> {{timeFormatted}}</span>
-		</div>
-	{{else}}
-		<div class="single-message" data-time="{{time}}">
-			<span class="label label-warning" style="background-color: #{{color}};">{{author}}</span> {{contentParse}}<span class="message-time pull-right"> {{timeFormatted}}</span>
-		</div>
-	{{/if}}
+	<!-- Send message form -->
+<template name="messageSendForm">
+	<form id="send-msg-form">
+		<input type="text" id="input-text">
+		<button id="send-message-button">Send</button>
+	</form>
 </template>
+
 
 <!-- authNavBox template -->
 <template name="authNavbox">
@@ -95,4 +93,13 @@
 	<div class="user">
 		<span class="label label-warning" style="background-color: #{{color}};">{{name}}</span> <span class="{{#if notTyping}}hidden{{/if}}">typing...</span>
 	</div>
+</template>
+
+
+<!-- user stripe -->
+<template name="userStripe">
+	<div id="user-stripe-color" style="background-color: #2e95ff;"></div>
+	<div id="user-icon"><img src="user.png"></div>
+	<div id="user-stripe-nick">awinecki</div>
+	<div id="settings-icon"><img src="settings.png"></div>
 </template>

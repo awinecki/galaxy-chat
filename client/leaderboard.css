@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,300&subset=latin,latin-ext);
 
 /*General rules*/
 /*---------------------------------------*/
@@ -14,8 +15,177 @@ body {
     user-select: none;
 }
 
+.clear {
+  clear: both;
+}
+
+/*Base layout*/
+/*---------------------------------------*/
+
+#top-stripe {
+  position: fixed;
+  z-index: 5;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 8px;
+  background-color: #353535;
+}
+
+#main-wrapper {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+#left-column {
+  background-color: #ebebeb;
+  float: left;
+  width: 19%;
+  height: 100%;
+}
+
+#mid-column {
+  position: relative;
+  background-color: #f4f4f4;
+  border-left: 1px solid #d1d1d1;
+  border-right: 1px solid #d1d1d1;
+  height: 100%;
+  float: left;
+  width: 60%;
+}
+
+#chat-container {
+  position: absolute; 
+  top: 6px; left: 0px;
+  height: 80%; 
+  width: 100%;
+  overflow-y: scroll;
+  padding: 50px 0px 25px 0px;
+}
+
+#send-form {
+  position: absolute;
+  border-top: 1px solid #d1d1d1;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 10%;
+}
+
+#right-column {
+  background-color: #ebebeb;
+  float: left;
+  width: 19%;
+  height: 100%;
+}
+
+/*Left column*/
+/*---------------------------------------*/
+
+#logo-container {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+#logo-container img {
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+#user-stripe {
+  position: relative;
+  background-color: #353535;
+  height: 50px;
+}
+
+#user-stripe-color {
+  width: 6px;
+  height: 68px;
+  bottom: -8px;
+  left: 0px;
+  position: absolute;
+}
+
+#user-icon {
+  position: absolute;
+  top: 13px;
+  left: 11%;
+}
+
+#user-stripe-nick {
+  position: absolute;
+  top: 15px;
+  left: 25%;
+  font-family: 'Open Sans Semibold', Arial, sans-serif;
+  color: #fff;
+}
+
+#settings-icon {
+  position: absolute;
+  top: 13px;
+  right: 7%;
+}
+
+/*Mid column*/
+/*---------------------------------------*/
+
+.message {
+  margin-bottom: 5px;
+  width: 96%;
+  margin: 2px auto 0px auto;
+  padding: 3px 10px 4px 0px;
+  background-color: #fbfbfb;
+  font-size: 13px;
+  height: 20px;
+  font-family: 'Open Sans Light', Arial, sans-serif;
+}
+
+.nick-tile {
+  font-family: 'Open Sans Semibold', Arial, sans-serif;
+  color: #fff;
+  border-right: 2px solid #f4f4f4;
+  height: 100%;
+  padding: 4px 10px 5px 10px;
+}
+
+.message-content {
+  padding: 0px 0px 0px 6px;
+}
+
+.message-time {
+  color: #b8b8b8;
+  font-family: 'Open Sans Light', Arial, sans-serif;
+  font-size: 13px;
+}
+
 /*Bottom send message form*/
 /*---------------------------------------*/
+
+#input-text {
+  border-radius: 0px;
+  width: 80%;
+}
+
+#send-msg-form {
+  padding: 30px;
+}
+
+#send-message-button {
+  /*display: inline-block;*/
+  background-color: #2e95ff;
+  border: 1px solid #7d7d7d;
+  font-family: 'Open Sans Semibold', Arial, sans-serif;
+  font-size: 15px;
+  color: #fff;
+  margin: 0px 0px 0px 10px;
+  padding: 4px;
+  position: relative;
+  left: 0px;
+  bottom: 5px;
+  width: 13%;
+}
 
 #bottom-sendmsgform-container {
   position: fixed;
@@ -47,13 +217,6 @@ body {
   min-height: 300px;
 }
 
-.single-message {
-  margin-bottom: 5px;
-  padding: 3px 10px 4px 3px;
-  background-color: #fff;
-  border-radius: 3px; 
-}
-
 .typing-notification {
   margin-bottom: 5px;
   padding: 3px 10px 4px 3px;
@@ -62,10 +225,6 @@ body {
 .typing {
 	color: #ababab;
 	font-size: x-small;
-}
-
-.message-time {
-  color: #aaa;
 }
 
 .login-box {

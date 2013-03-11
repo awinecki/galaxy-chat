@@ -21,9 +21,10 @@ Meteor.methods({
 // What to do if server
 if (Meteor.is_server) {
 
-	// Allow users collections to be seend by cl
+	// Allow users collections to be seend by client
   Meteor.publish("users", function(id) {
 
+  	// From Meteor 0.5.7 session is renamed to _session
     this._session.socket.on("close", function() {
 			Fiber(function() {
 				console.log('user disconnected.');

@@ -4,6 +4,8 @@
 
 <body>
 
+	<div id="top-stripe"></div>
+
 	<!-- login box -->
 	<div class="row-fluid" id="overlay-wrapper">
 		<div class="login-box">
@@ -11,63 +13,34 @@
 		</div>
 	</div>
 
-	<!-- top navigation -->
-	<div class="navbar navbar-inverse navbar-fixed-top" id="top-nav-stripe" style="display:none;">
-		<div class="navbar-inner">
-			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<a class="brand" href="#">Galaxy Chat v0.3.0</a>
-				<div class="nav-collapse collapse">
-						<ul class="nav">
-								<li class="active"><a href="#">Home</a></li>
-<!-- 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-										Dropp <b class="caret"></b>
-									</a>
-									<ul class="dropdown-menu">
-										<li><a href="#">Action</a></li>
-										<li><a href="#">Another action</a></li>
-										<li><a href="#">Something else here</a></li>
-										<li class="divider"></li>
-										<li class="nav-header">Nav header</li>
-										<li><a href="#">Separated link</a></li>
-										<li><a href="#">One more separated link</a></li>
-									</ul>
-								</li>
- -->						</ul>
-						<form class="navbar-form pull-right">
-								<!--<input class="span2" type="text" placeholder="Email">-->
-								<!--<input class="span2" type="password" placeholder="Password">-->
-								<!--<button type="submit" class="btn">Sign in</button>-->
-								{{> authNavbox}}
-						</form>
-				</div>
+	<div class="" id="main-wrapper">
+		<div class="" id="left-column">
+			<div id="logo-container">
+				<img src="logo.png">
+			</div>	
+			<div id="user-stripe">
+				{{> userStripe}}				
 			</div>
 		</div>
-	</div>
-
-	<!-- main messages container -->
-	<div class="row-fluid" id="main-container">
-		<div class="span1"></div>
-		<div class="span9">
-			{{> chat}}
+		<div id="mid-column">
+			<!-- main messages container -->
+			<div id="chat-container">
+				{{> chat}}
+			</div>
+			<div id="send-form">
+				{{> messageSendForm}}
+			</div>
 		</div>
+		<div class="" id="right-column">
+			
+		</div>
+		<div class="clear"></div>
 	</div>
 
 	<!-- online users side panel -->
-	<div class="row-fluid" id="online-users-container">
-		<div class="span2 offset10">
-			{{> usersbox}}
-		</div>
-	</div>
+			<!-- {{> usersbox}} -->
 
 	<!-- bottom send msg form -->
-	<div class="row-fluid" id="bottom-sendmsgform-container">
-			{{> messageSendForm}}
-	</div>
+			<!-- {{> messageSendForm}} -->
 
 </body>

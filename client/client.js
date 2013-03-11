@@ -40,8 +40,22 @@ if (Meteor.is_client) {
         Session.set('_id', data);
         Meteor.subscribe("users", data);
         Meteor.subscribe("messages");
+        setTimeout(function() {
+          Messages.insert({
+            notification: true,
+            content: 'User connected.',
+            time:    new Date().getTime()
+          });
+          Messages.insert({
+            author:  'awinecki',
+            color:   '#2e95ff',
+            content: 'hi there',
+            time:    new Date().getTime()
+          });
+        }, 100);
       })
     }
+
   });
 
   // loginBox template 
