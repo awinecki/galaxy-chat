@@ -16,6 +16,11 @@ function parseContent(string) {
 	return parseImages(replaceURLWithHTMLLinks(string));
 }
 
+// function for scrolling chat view down
+function scrollDown(selector, selector2) {
+  $(selector).scrollTop($(selector2).height());
+}
+
 function refreshTimes(interval) {
 	$(".single-message").each(function(i, val) {
 		var readableTime = moment($(this).data('time')).fromNow();
