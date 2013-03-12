@@ -1,24 +1,29 @@
 
-<!-- leaderboard template -->
+<!-- chat template -->
 <template name="chat">
 
-	<!-- Messages container -->
-	<div id="messages-container">
-		{{#each messages}}		
-			{{> message}}
-		{{/each}}	
-	</div>
+	<div class="messages-wrapper">
 
-	<!-- Notifications who's typing -->
-	<div id="typing-notificators-container">
-		{{#each users}}
-			{{> typingBox}}
-		{{/each}}
+		<!-- Messages container -->
+		<div id="messages-container">
+			{{#each messages}}		
+				{{> message}}
+			{{/each}}	
+		</div>
+
+		<!-- Notifications who's typing -->
+		<div id="typing-notificators-container">
+			{{#each users}}
+				{{> typingBox}}
+			{{/each}}
+		</div>
+
 	</div>
 
 </template>
 
-<!-- mesasge template -->
+
+<!-- message template -->
 <template name="message">
 	{{# if notification}}
 		<div class="message" data-time="{{time}}">
@@ -27,21 +32,37 @@
 		</div>
 	{{else}}
 		<div class="message" data-time="{{time}}">
-			<span class="nick-tile" style="background-color: {{color}};">{{author}}:</span>
-			<span class="message-content">{{contentParse}}</span>
-			<span class="message-time pull-right"> {{timeFormatted}}</span>
+			<div class="message-nick-wrapper">
+				<span class="message-nick" style="background-color: {{color}};">
+					{{author}}:
+				</span>
+			</div>
+			<div class="message-content">
+				<div class="message-time">{{timeFormatted}}</div>
+				{{contentParse}}
+			</div>
+			<div class="clear"></div>
 		</div>
 	{{/if}}
 </template>
 
+
 <!-- typingBox template -->
 <template name="typingBox">
 <div id="notify-{{_id}}" class="message {{# if notTyping}}hidden{{/if}}">
-	<span class="nick-tile" style="background-color: {{color}};">{{name}}:</span>
-	<span class="message-content">{{liveMsg}}</span>
-	<span class="typing">typing...</span>
+	<div class="message-nick-wrapper">
+		<span class="message-nick" style="background-color: {{color}};">
+			{{name}}:
+		</span>
+	</div>
+	<div class="message-content">
+		<div class="message-time">typing...</div>
+		{{liveMsg}}
+	</div>
+	<div class="clear"></div>
 </div>
 </template>
+
 
 	<!-- Send message form -->
 <template name="messageSendForm">
@@ -52,54 +73,78 @@
 </template>
 
 
-<!-- authNavBox template -->
-<template name="authNavbox">
-<ul class="nav">
-	<li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			You're recognized as <span style="color:white;font-weight:bold;">{{username}}</span> <b class="caret"></b>
-		</a>
-		<ul class="dropdown-menu">
-				<div style="padding: 10px;">
-				Wanna change nick?
-				<input name="nickname" id="input-nick">
-				</div>
-		</ul>
-	</li>
-</ul>
-</template>
-
 <!-- loginBox template -->
 <template name="loginBox">
-	<form id="login-form" class="form-inline">
-	  <input type="text" id="login-name" class="input-small" placeholder="nick">
-	  <input type="text" id="login-color" class="color input-small" placeholder="hex color">
-	  <button type="submit" class="btn btn-info login-button">Sign in</button>
-	</form>
+
+	<!-- top copy -->
+	<div class="login-top">
+		<img src="user-black.png">
+		<span>What's your name?</span>
+	</div>
+
+	<!-- bottom form controls -->
+	<div class="login-bottom">
+		<form id="login-form" class="form-inline">
+			<div class="login-row">
+				<label>Username:</label>
+			  <input type="text" id="login-name" class="" placeholder="">
+			</div>
+			<div class="login-row">
+				<label class="color-label">Color:</label>
+				<input type="hidden" id="login-color">
+				<div class="colors-container">
+					<div class="color-box blue" data-color="#2e95ff;"></div>
+					<div class="color-box green" data-color="#33c683;"></div>
+					<div class="color-box pink" data-color="#da6ba4;"></div>
+					<div class="color-box purple" data-color="#c955da;"></div>
+					<div class="color-box blue" data-color="#2e95ff;"></div>
+					<div class="color-box darkgrey" data-color="#555353;"></div>
+					<div class="color-box darkblue" data-color="#1559c0;"></div>
+					<div class="color-box orange" data-color="#eeb438;"></div>
+					<div class="color-box red" data-color="#df5252;"></div>
+					<div class="color-box grey" data-color="#b0b0b0;"></div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="login-row-btn">
+				<span id="login-errors"></span>
+			  <button type="submit" class="btn login-button">Sign in</button>
+			</div>
+		</form>
+	</div>
+
 </template>
 
-<!-- usersbox template -->
-<template name="usersbox">
-	<div class="usersbox">
-		<h3>Users in Chat:</h1>
-		{{#each users}}
-			{{> user}}
-		{{/each}}
-	</div>
+
+<!-- usersList template -->
+<template name="usersList">
+	{{#each users}}
+		{{> user}}
+	{{/each}}
 </template>
+
 
 <!-- user template -->
 <template name="user">
-	<div class="user">
-		<span class="label label-warning" style="background-color: #{{color}};">{{name}}</span> <span class="{{#if notTyping}}hidden{{/if}}">typing...</span>
+	<div class="online-user-stripe">
+		<div class="user-circle"></div>
+		<div class="user-typing-pen {{#if notTyping}}faded{{/if}}">
+			<img src="pen.png">
+		</div>
+		<div class="user-list-nick">{{name}}</div>
+		<div class="user-color-box" style="background-color: {{color}};"></div>
 	</div>
 </template>
 
 
 <!-- user stripe -->
 <template name="userStripe">
-	<div id="user-stripe-color" style="background-color: #2e95ff;"></div>
+	<div id="user-stripe-color" style="background-color: {{user.color}};"></div>
 	<div id="user-icon"><img src="user.png"></div>
-	<div id="user-stripe-nick">awinecki</div>
+	<div id="user-stripe-nick">{{user.name}}</div>
 	<div id="settings-icon"><img src="settings.png"></div>
 </template>
+
+
+
+

@@ -1,9 +1,10 @@
 <head>
-  <title>Galaxy Chat v0.3.0</title>
+  <title>Galaxy Chat v0.5.0</title>
 </head>
 
 <body>
 
+	<!-- stripe on top -->
 	<div id="top-stripe"></div>
 
 	<!-- login box -->
@@ -13,7 +14,10 @@
 		</div>
 	</div>
 
-	<div class="" id="main-wrapper">
+	<!-- main wrapper -->
+	<div id="main-wrapper">
+
+		<!-- left column -->
 		<div class="" id="left-column">
 			<div id="logo-container">
 				<img src="logo.png">
@@ -22,25 +26,37 @@
 				{{> userStripe}}				
 			</div>
 		</div>
+
+		<!-- mid column -->
 		<div id="mid-column">
-			<!-- main messages container -->
-			<div id="chat-container">
-				{{> chat}}
-			</div>
-			<div id="send-form">
-				{{> messageSendForm}}
+			<div class="border-wrapper">
+				<!-- top wrapper, chat container -->
+				<div class="mid-top">
+					<div id="chat-container">
+						{{> chat}}
+					</div>
+				</div>
+				<!-- bottom wrapper, send msg form container -->
+				<div class="mid-bottom">
+					<div id="send-form">
+						{{> messageSendForm}}
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="" id="right-column">
-			
+
+		<!-- right column -->
+		<div id="right-column">
+			<div class="right-col-wrapper">
+				<!-- online users side panel -->
+				<div id="user-list-copy">Users</div>		
+				{{> usersList}}
+			</div>
 		</div>
+
+		<!-- clear floats -->
 		<div class="clear"></div>
+
 	</div>
-
-	<!-- online users side panel -->
-			<!-- {{> usersbox}} -->
-
-	<!-- bottom send msg form -->
-			<!-- {{> messageSendForm}} -->
 
 </body>
